@@ -5,11 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "SET NODE_ENV=development & nodemon app.js",
-    "prod": "SET NODE_ENV=production & node app.js"
+    "prod": "SET NODE_ENV=production & node app.js",
+    "tailwind:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css"
   },
   "author": "SAKIB ANJUM",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^10.4.14",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",

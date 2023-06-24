@@ -1,8 +1,8 @@
 /*
- * Title: Project style sheet
+ * Title: Movie API Application
  * Description: This is the main project style sheet of this project
- * Author: Sumit Saha ( Learn with Sumit )
- * Date: 23/05/2021
+ * Author: SAKIB ANJUM
+ * Date: 24/06/2023
  *
  */
 
@@ -12,7 +12,7 @@
   --secondary: #11141f;
   --tertiary: #1f222e;
   --dark: #0e0e12;
-  --green: #52d794;
+  --green: #519ecb;
   --blue: #00b3bd;
   --light: #fff;
   --red: indianred;
@@ -102,6 +102,7 @@ input[type="submit"]:active {
   display: none;
 }
 .modal {
+  margin-top: 3%;
   width: 450px;
   z-index: 99;
   left: 50%;
@@ -153,6 +154,11 @@ input[type="submit"]:active {
   transform: scale(0.95) rotate(45deg);
   background-color: var(--red);
   color: #fff;
+}
+
+#movie-lebel {
+  color: white;
+  margin-bottom: 0%;
 }
 
 /* modal related responsive styles */
@@ -503,12 +509,28 @@ input[type="submit"]:active {
 #left-column {
   grid-area: left-column;
   background-color: var(--tertiary);
-  background-image: url("../images/illustration.png");
+  color: white;
   background-size: 68%;
   background-position: center;
   background-repeat: no-repeat;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+
+#admin-container {
+  margin-top: 20%;
+  margin-left: 5%;
+}
+#admin-login {
+  padding-top: 2%;
+  text-underline-position: below;
+  text-underline-offset: 5px;
+  color: white;
+}
+
+#reg-user-container {
+  margin-top: 20%;
+  margin-left: 5%;
 }
 
 /* Branding Section */

@@ -1,0 +1,122 @@
+<div class="modal-wrapper" id="add-user-modal">
+  <div class="modal">
+    <a href="#" onclick="closeModal()" class="modal-close">+</a>
+    <div class="modal-title">
+      <h2>Create A New Movie</h2>
+    </div>
+    <div class="modal-body">
+      <form
+        method="post"
+        action="/users"
+        enctype="multipart/form-data"
+        id="add-user-form"
+      >
+        <input type="text" placeholder="Enter Movie Name" name="movie-name" />
+        <p class="error name-error">This is error</p>
+
+        <input type="number" placeholder="Enter Movie Duration (min)" name="duration" />
+        <p class="error email-error">This is error</p>
+
+        <input type="text" placeholder="Enter Actors Name" name="actors-name" />
+        <p class="error mobile-error">This is error</p>
+
+        <input type="text" placeholder="Enter Film Director Name" name="director-name" />
+        <p class="error password-error">This is error</p>
+
+        <input type="text" placeholder="Enter Producer Name" name="producer-name" />
+        <p class="error password-error">This is error</p>
+
+        <input type="text" placeholder="Enter Director of photography Name" name="director-of-photography-name" />
+        <p class="error password-error">This is error</p>
+
+        <input type="text" placeholder="Enter Production Designer Name" name="production-designer-name" />
+        <p class="error password-error">This is error</p>
+
+        <!-- <input type="text" placeholder="Enter Art Director Name" name="password" />
+        <p class="error password-error">This is error</p> -->
+
+        <h3 id="movie-lebel" for="">Upload Movie Image:</h3>
+
+        <!-- movie-image -->
+        <input type="file" name="movie-image" />
+        <p class="error avatar-error">This is error</p>
+        <p class="error common-error">This is error</p>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  const modal = document.querySelector("#add-user-modal");
+  const form = document.querySelector("#add-user-form"); 
+
+   // success toast
+  const successToast = Toastify({
+    text: "User was added successfully! Reloading the list...",
+    duration: 4000,
+  });
+
+  function closeModal() {
+    modal.style.display = "none";
+  }
+  function openModal() {
+    modal.style.display = "block";
+  }
+    // form submit handler
+  form.onsubmit = async function (event) {
+    event.preventDefault();
+
+    // clear errors first
+    const errorPlaceholders = document.querySelectorAll("p.error");
+    for (let i = 0; i < errorPlaceholders.length; i++) {
+      errorPlaceholders[i].style.display = "none";
+    }
+
+    const inputErrors = document.querySelectorAll("input.error");
+    if (inputErrors.length > 0) {
+      for (let j = 0; j < inputErrors.length; j++) {
+        inputErrors[j].classList.remove("error");
+      }
+    }
+
+    // prepare the form data
+    const formData = new FormData(form);
+
+    // send the request to server
+    let response = await fetch("/admin", {
+      method: "POST",
+      body: formData,
+    });
+
+    // get response
+    let result = await response.json();
+
+    // handle error and response
+    if (result.errors) {
+      // errors
+      Object.keys(result.errors).forEach((fieldName) => {
+        // add error class to all inputs
+        form[fieldName].classList.add("error");
+
+        // set all error placeholders (p tag) textContent
+        const errorPlaceholder = document.querySelector(`.${fieldName}-error`);
+        errorPlaceholder.textContent = result.errors[fieldName].msg;
+
+        // make all placeholders visible
+        errorPlaceholder.style.display = "block";
+      });
+    } else {
+      // success
+      successToast.showToast();
+      closeModal();
+      document.querySelector("p.error").style.display = "none";
+
+      // reload the page after 1 second
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
+  };
+
+  
+</script>
