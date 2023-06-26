@@ -1,17 +1,18 @@
-<div class="modal-wrapper" id="add-movies-modal">
+<div class="modal-wrapper" id="movie-details-modal">
   <div class="modal">
-    <a href="#" onclick="closeAddMovieModal()" class="modal-close">+</a>
+    <a href="#" onclick="closeModal()" class="modal-close">+</a>
     <div class="modal-title">
-      <h2>Create A New Movie</h2>
+      <h2>Movie Details</h2>
     </div>
     <div class="modal-body">
       <form
         method="post"
         action="/users"
         enctype="multipart/form-data"
-        id="add-movie-form"
+        id="movie-details-form"
       >
-        <input type="text" placeholder="Enter Movie Name" name="movieName" />
+      <img src="./images/logo.png" alt="">
+        <input type="text" placeholder="Enter Movie Name" name="movie-name" />
         <p class="error name-error">This is error</p>
 
         <input type="number" placeholder="Enter Movie Duration (min)" name="duration" />
@@ -20,50 +21,28 @@
         <input type="text" placeholder="Enter Actors Name" name="actors-name" />
         <p class="error mobile-error">This is error</p>
 
-        <input type="text" placeholder="Enter Film Director Name" name="filmDirectorName" />
-        <p class="error password-error">This is error</p>
-
-        <input type="text" placeholder="Enter Producer Name" name="producerName" />
-        <p class="error password-error">This is error</p>
-
-        <input type="text" placeholder="Enter Director of photography Name" name="directorOfPhotographyName" />
-        <p class="error password-error">This is error</p>
-
-        <input type="text" placeholder="Enter Production Designer Name" name="productionDesignerNameName" />
-        <p class="error password-error">This is error</p>
-
-        <!-- <input type="text" placeholder="Enter Art Director Name" name="password" />
-        <p class="error password-error">This is error</p> -->
-
-        <h3 id="movie-lebel" for="">Upload Movie Image:</h3>
-
-        <!-- movie-image -->
-        <input type="file" name="moviePic" />
-        <p class="error avatar-error">This is error</p>
-        <p class="error common-error">This is error</p>
-        <input type="submit" value="Submit" />
       </form>
     </div>
   </div>
 </div>
 <script>
-  const modal = document.querySelector("#add-movies-modal");
-  const form = document.querySelector("#add-movie-form"); 
+  const movieDetailsModal = document.querySelector("#movie-details-modal");
+  const movieDetailsForm = document.querySelector("#movie-details-form"); 
 
    // success toast
-  const successToast = Toastify({
+  const movieSuccessToast = Toastify({
     text: "User was added successfully! Reloading the list...",
     duration: 4000,
   });
 
-  function closeAddMovieModal() {
-    modal.style.display = "none";
+  function closeModal() {
+    movieDetailsModal.style.display = "none";
   }
-  function openAddMovieModal() {
-    modal.style.display = "block";
+  function openMovieDetailsModal() {
+    movieDetailsModal.style.display = "block";
   }
     // form submit handler
-  form.onsubmit = async function (event) {
+  movieDetailsForm.onsubmit = async function (event) {
     event.preventDefault();
 
     // clear errors first
@@ -107,7 +86,7 @@
       });
     } else {
       // success
-      successToast.showToast();
+      movieSuccessToast.showToast();
       closeModal();
       document.querySelector("p.error").style.display = "none";
 

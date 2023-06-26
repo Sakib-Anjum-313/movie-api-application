@@ -15,6 +15,7 @@ const {
 const loginRouter = require("./router/loginRouter");
 const adminRouter = require("./router/adminRouter");
 const regUserRouter = require("./router/regUserRouter");
+const guestUserRouter = require("./router/guestUserRouter");
 
 // database connection
 mongoose
@@ -47,6 +48,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use("/", loginRouter);
 app.use("/admin", adminRouter);
 app.use("/regUser", regUserRouter);
+app.use("/guestUser", guestUserRouter);
 
 // 404 not found handler
 app.use(notFoundHandler);

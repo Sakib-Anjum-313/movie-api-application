@@ -5,10 +5,10 @@
       </div>
 
       <div class="new-message-container new-user">
-        <a href="#" onclick="openModal()">+</a>
+        <a  href="#" onclick="openAddMovieModal()">+</a>
       </div>
 
-      <div id="users-table">
+      <!-- <div id="users-table">
         <table>
           <thead>
             <tr>
@@ -30,10 +30,32 @@
             </tr>
           </tbody>
         </table>
+      </div> -->
+      
+      <div  class="movie-show-card-container ">
+        <div onclick="openMovieDetailsModal()" class="movie-show-card">
+          <div>
+            <img class="movie-pic" src="./images/logo.png" alt="">
+          </div>
+          <div class="movie-name-container">
+            <h2 class="movie-name">movie name</h2>
+          </div>
+        </div>
+        <div  onclick="openMovieDetailsModal()" class="movie-show-card">
+          <div>
+            <img class="movie-pic" src="./images/logo.png" alt="">
+          </div>
+          <div class="movie-name-container"><h2 class="movie-name">movie name</h2></div>
+        </div>
+        
+        
       </div>
+      
     </div>
+    
 
     <%- include('./partials/add-movies-modal.ejs'); %>
+    <%- include('./partials/movie-details-modal.ejs'); %>
 
     
   </body>

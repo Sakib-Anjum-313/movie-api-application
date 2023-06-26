@@ -7,13 +7,12 @@ const path = require("path");
 const User = require("../models/People");
 
 
-// get users page
+// get Admin page
 function getUsers(req, res, next) {
   res.render("admin");
 }
 
-// add User
-
+// add Reg User
 async function addUser(req, res, next) {
   let newUser;
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -30,8 +29,8 @@ async function addUser(req, res, next) {
       password: hashedPassword,
     });
   }
-  
-  // save user or send error
+
+  // save Reg user or send error
   try {
     const result = await newUser.save();
     res.status(200).json({
